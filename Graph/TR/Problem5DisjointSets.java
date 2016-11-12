@@ -1,6 +1,6 @@
 import java.util.*;
 /**
- * @author tuhsar kharbanda
+ * @author tushar kharbanda
  * Date 11/8/2016
  * Disjoint sets using path compression and union by rank
  * Supports 3 operations
