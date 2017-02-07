@@ -1,18 +1,21 @@
-package TR;
 import java.util.*;
 
 class Graph<T>{
     private List<Edge<T>> allEdges;
-    private Map<Long, Vertex<T>> allVertex;
+    private Map<T, Vertex<T>> allVertex;
     boolean isDirected = false;
 
     public Graph(boolean isDirected){
         allEdges = new ArrayList<Edge<T>>();
-        allVertex = new HashMap<Long, Vertex<T>>();
+        allVertex = new HashMap<T, Vertex<T>>();
         this.isDirected = isDirected;
     }
 
-    public void addEdge(long id1, long id2, int weight){
+    public void addEdge(T id1, T id2){
+        addEdge(id1, id2, 0);
+    }
+
+    public void addEdge(T id1, T id2, int weight){
         Vertex<T> vertex1 = null;
         if(allVertex.containsKey(id1)){
             vertex1 = allVertex.get(id1);
@@ -40,15 +43,19 @@ class Graph<T>{
     public List<Edge<T>> getAllEdges(){
         return allEdges;
     }
+
+    public Collection<Vertex<T>> getAllVertexes(){
+        return allVertex.values();
+    }
 }
 
 class Vertex<T>{
-    long id;
+    T id;
     private T data;
     private List<Edge<T>> edges = new ArrayList<Edge<T>>();
     private List<Vertex<T>> adjacentVertex = new ArrayList<Vertex<T>>();
 
-    Vertex(long id){
+    Vertex(T id){
         this.id = id;
     }
 
@@ -56,8 +63,11 @@ class Vertex<T>{
         edges.add(edge);
         adjacentVertex.add(vertex);
     }
-    public long getId(){
+    public T getId(){
         return this.id;
+    }
+    public List<Vertex<T>> getAdjacentVertexes(){
+        return adjacentVertex;
     }
 }
 
